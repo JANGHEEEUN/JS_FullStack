@@ -1,7 +1,7 @@
 {
   "name": "wetube",
   "version": "1.0.0",
-  "description": "Cloning Youtub with Vanila and NodeJS",
+  "description": "Cloning Youtube with Vanila and NodeJS",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "homepage": "https://github.com/JANGHEEEUN/JS_FullStack#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "scripts":{
+    "start":"node index.js"
   }
 }
