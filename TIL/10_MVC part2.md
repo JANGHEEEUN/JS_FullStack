@@ -123,3 +123,38 @@
 
     ![image-20200309140110096](images/image-20200309140110096.png) 
 
+- userRouter.js
+
+  ```js
+  import express from "express";
+  import routes from "../routes";
+  
+  const userRouter = express.Router();
+  
+  userRouter.get(routes.users, (req,res) => res.send('Users'));
+  userRouter.get(routes.userDetail, (req,res) => res.send('User Detail'));
+  userRouter.get(routes.editProfile, (req,res) => res.send('Edit Profile'));
+  userRouter.get(routes.changePassword, (req,res) => res.send('Change Password'));
+  
+  export default userRouter;
+  ```
+
+- videoRouter.js
+
+  ```js
+  import express from "express";
+  import routes from "../routes";
+  
+  const videoRouter = express.Router();
+  
+  videoRouter.get(routes.videos, (req,res) => res.send('Videos'));
+  videoRouter.get(routes.upload, (req,res) => res.send('Upload'));
+  videoRouter.get(routes.videoDetail, (req,res) => res.send('Video Detail'));
+  videoRouter.get(routes.editVideo, (req,res) => res.send('Edit Video'));
+  videoRouter.get(routes.deleteVideo, (req,res) => res.send('Delete Video'));
+  
+  export default videoRouter;
+  ```
+
+  
+
