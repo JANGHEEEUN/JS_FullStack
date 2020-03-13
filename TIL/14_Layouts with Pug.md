@@ -1,81 +1,73 @@
 # Layouts with Pug
 
-### 1. Installing Pug
+### 1. Using Pug
 
-- pug
+- HTML과 CSS만으로 작업할 때는 똑같은 것을 반복하는 경우가 많기 때문에 별로 좋지 않음
 
-  **Node Express Template Engine**
-  
-- pug의 장점
+  HTML과 CSS는 프로그래밍 언어가 아니고 논리적인 작업을 할 수 없음
 
-  1. HTML을 간단하게 표현해서 가독성이 좋음
-  2. 마크업 문법보다 코드량이 적어 생산성이 좋아짐
-  3. JS 연산 결과를 쉽게 보여줄 수 있음
-  4. 정적인 부분과 동적인 부분을 따로 할 수 있음
-  5. 다른 Express Engine보다 Google Trend 수치가 높음
-  
-- Installing pug
+- pug를 사용하면 html을 생성하는 javascript의 위력을 사용할 수 있음
 
-  > Terminal
+- `views/layouts/main.pug` 생성
 
-  ```bash
-  npm install pug
+  모든 페이지들의 토대가 되는 파일
+
+  `tab`안의 코드는 children 코드
+
+  - main 태그에 다른 모든 페이지들의 내용이 들어갈 것임
+
+    이를 위해 `block` 사용 - block은 name이 필요하므로 `content`로 이름 설정
+
+  ```pu
+  doctype html
+  html
+      head
+          title Wetube
+      body
+          main
+              block content
+          footer
+              span &copy; WeTube
   ```
 
-- settings
-
-  https://expressjs.com/en/4x/api.html#app.set
-
-  ![image-20200310144339773](images/image-20200310144339773.png)
-
-  우리는 `view engine` 설정을 변경할 것임 - default: `undefined`
-
-  ![image-20200310144500711](images/image-20200310144500711.png)
-
-  - app.js에 설정 추가
-
-    ```js
-    app.set('view engine', "pug");
-    ```
-
-- views
-
-  pug와 express에는 view 파일들의 위치에 관한 기본 설정이 있음
-
-  만약 설정을 바꾸고 싶다면 `views` 설정을 변경하면 됨 - default: `'views'`
-
-  ![image-20200310144748395](images/image-20200310144748395.png)
-
   
 
-### 2. Using pug
+###  2. Using Layout
 
-- views/home.pug 생성
+- views/home.pug에서 `extension` 사용
 
-  html 대신 확장자 **pug**
+  main.pug 레이아웃을 템플릿에서 확장하겠다는 의미
 
-- example Hello
+  main.pug 코드들도 사용하고 거기에 추가적인 것을 더하겠다는 뜻 - home 화면이 main을 copy paste
 
-  ```pug
-  // HTML
-  // <p> Hello </p>
-  
-  // pug
-  p Hello
+  ```
+  extends layouts/main
   ```
 
-- res.send로 전송하는 것 대신 pug 템플릿을 웹사이트에 전송
+- main.pug에서 block content가 들어가는자리에 내용 채워넣기
 
-  `res.render`을 사용
+  ```
+  block content
+      p Hello!
+  ```
 
-  - videoController.js
+  ![image-20200313103941082](images/image-20200313103941082.png) 
 
-    render 함수가 views 폴더에서 파일명이 `home`이고 확장자가 `pug`인 파일을 찾은 후에 보여줄 것임
+- main.pug에 header 추가
 
-    위에서 app.js에 `view engine`을 설정했기 때문에 확장자 `pug`를 찾을 수 있음
+  ```
+  doctype html
+  html
+      head
+          title Wetube
+      body
+          header
+              h1 WeTube
+          main
+              block content
+          footer
+              span &copy; WeTube
+  ```
 
-    ```js
-    export const home = (req, res) => res.render("home");
-    ```
+- 모든 템플릿에 main을 extends
 
-    ![image-20200310145751203](images/image-20200310145751203.png) 
