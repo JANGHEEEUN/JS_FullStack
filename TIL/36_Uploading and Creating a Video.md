@@ -1,14 +1,4 @@
-   const newVideo = await Video.create({
-
-​    fileUrl: path,
-
-​    title,
-
-​    description
-
-   })
-
-  res.rendeUploading and Creating a Video
+# Uploading and Creating a Video
 
 ### 1. Check the Information
 
